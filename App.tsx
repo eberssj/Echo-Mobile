@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts, LexendDeca_400Regular, LexendDeca_700Bold } from '@expo-google-fonts/lexend-deca';
-import AppLoading from 'expo-app-loading';
 import Home from './src/pages/Home';
 import AuthScreen from './src/pages/AuthScreen';
 import ProfilePage from './src/pages/ProfilePage';
@@ -21,8 +20,9 @@ export default function App() {
     LexendDeca_700Bold,
   });
 
-  if (!fontsLoaded && !fontError) {
-    return <AppLoading />;
+  // Se as fontes não estiverem carregadas ou houver erro, retorne null (ou um componente de carregamento customizado)
+  if (!fontsLoaded || fontError) {
+    return null; // Ou um componente como <View><Text>Carregando...</Text></View>
   }
 
   return (
