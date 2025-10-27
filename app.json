@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Echo",
+    "slug": "Echo",
+    "version": "1.0.0",
+    "jsEngine": "hermes",
+    "orientation": "portrait",
+    "icon": "./assets/splashscreen_logo.png",
+    "splash": {
+      "image": "./assets/splashscreen_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 1000
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.echo",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan barcodes."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/splashscreen_logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.yourcompany.echo",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b00536b1-b64c-4ce7-a025-7884e929a1c0"
+      }
+    },
+    "newArchEnabled": true,
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}
