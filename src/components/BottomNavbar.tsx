@@ -1,22 +1,19 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import CalendarWeekIcon from '../assets/calendar-week.svg'; 
+import CalendarWeekIcon from '../assets/calendar-week.svg';
 import ChartIcon from '../assets/chart-pie.svg';
 import CameraIcon from '../assets/camera.svg';
 import HistoryIcon from '../assets/history-toggle.svg';
 import ProfileIcon from '../assets/user.svg';
 
 const BottomNavbar: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
 
-  // Ajuste: limitar o padding inferior
-  const bottomPadding = Math.min(insets.bottom, 12); // máximo de 12px
-
   return (
-    <SafeAreaView style={[styles.safeArea, { paddingBottom: bottomPadding }]}>
+    <View style={[styles.navbarContainer, { paddingBottom: insets.bottom }]}>
       <View style={styles.navbar}>
         <TouchableOpacity
           style={styles.iconContainer}
@@ -58,17 +55,15 @@ const BottomNavbar: React.FC = () => {
           <ProfileIcon width={24} height={24} />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+  navbarContainer: {
     backgroundColor: 'white',
+    borderTopWidth: 0.5,
+    borderTopColor: '#ccc',
   },
   navbar: {
     flexDirection: 'row',
@@ -76,8 +71,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 60,
     backgroundColor: 'white',
-    borderTopWidth: 0.5,
-    borderTopColor: '#ccc',
     paddingHorizontal: 10,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
@@ -92,17 +85,12 @@ const styles = StyleSheet.create({
   centerIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 64,
-    height: 52,
-    borderRadius: 30,
+    width: 56,
+    height: 56, 
+    borderRadius: 28,
     backgroundColor: 'white',
-    borderWidth: 1.5,
+    borderWidth: 2, 
     borderColor: '#3D9F44',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-    elevation: 3,
   },
 });
 

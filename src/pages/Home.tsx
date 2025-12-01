@@ -20,9 +20,7 @@ const Home: React.FC<HomeProps> = ({ setUser }) => {
   const { scannedValue, selectedDate, scanId } = route.params || {};
 
   useEffect(() => {
-    if (!auth) {
-      return;
-    }
+    if (!auth) return;
 
     const unsubscribeAuth = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -49,7 +47,7 @@ const Home: React.FC<HomeProps> = ({ setUser }) => {
 
   if (tags === null) {
     return (
-      <View style={styles.container}>
+      <View style={styles.loadingContainer}>
         <Text>Loading...</Text>
       </View>
     );
@@ -57,25 +55,30 @@ const Home: React.FC<HomeProps> = ({ setUser }) => {
 
   return (
     <View style={styles.container}>
-      <Navbar setUser={setUser} />
+      {/* Conteúdo principal com scroll e padding seguro */}
       <View style={styles.contentContainer}>
-        <Text style={styles.homePageTitle}>
-          Hello, Welcome to <Text style={styles.homeEcho}>Echo</Text>.
-        </Text>
-        <Balance tags={tags} currentDate={currentDate} />
-        <View style={styles.homeContentContainer}>
-          <View style={styles.homeCalendarContainer}>
-            <Calendar
-              onTagsUpdate={(newTags) => setTags(newTags)}
-              currentDate={currentDate}
-              setCurrentDate={setCurrentDate}
-              scannedValue={scannedValue}
-              selectedDate={selectedDate ? new Date(selectedDate) : undefined}
-              scanId={scanId}
-            />
+        <Navbar setUser={setUser} />
+        <View style={styles.innerContent}>
+          <Text style={styles.homePageTitle}>
+            Hello, Welcome to <Text style={styles.homeEcho}>Echo</Text>.
+          </Text>
+          <Balance tags={tags} currentDate={currentDate} />
+          <View style={styles.homeContentContainer}>
+            <View style={styles.homeCalendarContainer}>
+              <Calendar
+                onTagsUpdate={(newTags) => setTags(newTags)}
+                currentDate={currentDate}
+                setCurrentDate={setCurrentDate}
+                scannedValue={scannedValue}
+                selectedDate={selectedDate ? new Date(selectedDate) : undefined}
+                scanId={scanId}
+              />
+            </View>
           </View>
         </View>
       </View>
+
+      {/* Bottom Navbar fixo na base */}
       <BottomNavbar />
     </View>
   );
@@ -88,8 +91,16 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+  },
+  innerContent: {
+    flex: 1,
     padding: 20,
-    paddingBottom: 80, // Espaço para a navbar fixa
+    paddingBottom: 20, // Espaço interno, sem interferir na navbar
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   homePageTitle: {
     fontSize: 24,
