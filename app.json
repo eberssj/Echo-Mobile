@@ -3,11 +3,11 @@
     "name": "Echo",
     "slug": "echo",
     "version": "1.0.0",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "orientation": "portrait",
-    "icon": "./assets/icon.png",              
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",        
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },
@@ -26,6 +26,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5c2410b5-1102-404f-9e08-7f0e37ab15e9"
+      }
     }
   }
 }
